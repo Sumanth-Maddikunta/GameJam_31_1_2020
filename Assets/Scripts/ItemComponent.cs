@@ -17,9 +17,14 @@ public class ItemComponent : MonoBehaviour
 
     private float mZPos;
     private Vector3 mOffset;
+    private Vector3 pos;
+    private bool isSelected = false;
+
+    public float zUnitMovement = 50f;
 
     private void Start()
     {
+        zUnitMovement = 30f;
         rb = GetComponent<Rigidbody>();
         meshRenderer = GetComponent<MeshRenderer>();
 
@@ -48,24 +53,54 @@ public class ItemComponent : MonoBehaviour
         }
     }
 
-    public void OnMouseDown()
+
+    void Update()
     {
-        mZPos = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
-        mOffset = gameObject.transform.position - GetMouseWorldPosition();
-        
+        if (isSelected)
+        {
+            pos.z = 0;
+
+            if (Input.GetAxis("Mouse ScrollWheel") > 0f) // forward
+            {
+                pos.z += zUnitMovement * Time.deltaTime;
+            }
+
+            if (Input.GetAxis("Mouse ScrollWheel") < 0f) // backward
+            {
+                pos.z -= zUnitMovement * Time.deltaTime;
+            }
+            mOffset += pos; 
+        }
     }
 
-    public void OnMouseDrag()
-    {
-        transform.position = GetMouseWorldPosition() + mOffset;
-    }
 
+    public void OnMouseOver()
+    {
+        Debug.Log("OnMouseObver");
+        if(Input.GetMouseButtonDown(1))//This acts as a replacement for OnMouseDown since it dosen't work with right mouse click
+        {
+            mZPos = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+            mOffset = gameObject.transform.position - GetMouseWorldPosition();
+            isSelected = true;
+        }
+        if(Input.GetMouseButton(1))//Acys as drag
+        {
+            transform.position = GetMouseWorldPosition() + mOffset;
+        }
+        if(Input.GetMouseButtonUp(1))//Acts as mouse up
+        {
+            isSelected = false;
+        }
+    }
+    
     private Vector3 GetMouseWorldPosition()
     {
         Vector3 mousePoint = Input.mousePosition;
         mousePoint.z = mZPos;
         return Camera.main.ScreenToWorldPoint(mousePoint);
     }
+
+   
 }
 
 public enum EItem

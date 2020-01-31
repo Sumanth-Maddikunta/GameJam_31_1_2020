@@ -22,10 +22,7 @@ public class PlayerController : MonoBehaviour
 
     public void PickUpObject()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        Physics.Raycast(ray, out hit);
-        Debug.Log(hit.transform.gameObject.name);
+
     }
 
     
