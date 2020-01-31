@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemComponent : MonoBehaviour
 {
     public EItem item = EItem.NONE;
-    [HideInInspector]public EItemState state = EItemState.NONE;
+    [HideInInspector] public EItemState state = EItemState.NONE;
     public int componentId = 0;
 
     public Material silhouetteMaterial;
@@ -13,6 +14,9 @@ public class ItemComponent : MonoBehaviour
 
     Rigidbody rb;
     MeshRenderer meshRenderer;
+
+    private float mZPos;
+    private Vector3 mOffset;
 
     private void Start()
     {
@@ -48,13 +52,13 @@ public class ItemComponent : MonoBehaviour
                 rb.isKinematic = true;
                 rb.useGravity = false;
                 meshRenderer.material = normalMaterial;
-                break; 
+                break;
         }
     }
 
     void SetState(EItemState itemState)
     {
-        if(state == itemState)
+        if (state == itemState)
         {
             return;
         }
@@ -62,6 +66,26 @@ public class ItemComponent : MonoBehaviour
         state = itemState;
         SetObjectProperties();
     }
+    public void OnMouseDown()
+    {
+        mZPos = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+        mOffset = gameObject.transform.position - GetMouseWorldPosition();
+
+    }
+
+    public void OnMouseDrag()
+    {
+        transform.position = GetMouseWorldPosition() + mOffset;
+    }
+
+    private Vector3 GetMouseWorldPosition()
+    {
+        Vector3 mousePoint = Input.mousePosition;
+        mousePoint.z = mZPos;
+        return Camera.main.ScreenToWorldPoint(mousePoint);
+
+    }
+
 }
 
 public enum EItem
