@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,9 @@ public class ItemComponent : MonoBehaviour
 
     Rigidbody rb;
     MeshRenderer meshRenderer;
+
+    private float mZPos;
+    private Vector3 mOffset;
 
     private void Start()
     {
@@ -44,6 +48,24 @@ public class ItemComponent : MonoBehaviour
         }
     }
 
+    public void OnMouseDown()
+    {
+        mZPos = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+        mOffset = gameObject.transform.position - GetMouseWorldPosition();
+        
+    }
+
+    public void OnMouseDrag()
+    {
+        transform.position = GetMouseWorldPosition() + mOffset;
+    }
+
+    private Vector3 GetMouseWorldPosition()
+    {
+        Vector3 mousePoint = Input.mousePosition;
+        mousePoint.z = mZPos;
+        return Camera.main.ScreenToWorldPoint(mousePoint);
+    }
 }
 
 public enum EItem
