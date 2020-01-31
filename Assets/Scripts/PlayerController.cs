@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
+    public static PlayerController instance;
+    public ItemComponent currentHandling = null;
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else if(instance!= null)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     // Update is called once per frame
