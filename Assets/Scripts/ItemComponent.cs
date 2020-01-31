@@ -3,17 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(MeshRenderer))]
 public class ItemComponent : MonoBehaviour
 {
     public EItem item = EItem.NONE;
     [HideInInspector] public EItemState state = EItemState.NONE;
     public int componentId = 0;
 
-    public Material silhouetteMaterial;
-    public Material normalMaterial;
-
-    Rigidbody rb;
-    MeshRenderer meshRenderer;
+    public Rigidbody rb;
+    public MeshRenderer meshRenderer;
 
     private float mZPos;
     private Vector3 mOffset;
@@ -23,11 +22,15 @@ public class ItemComponent : MonoBehaviour
 
     public float zUnitMovement = 50f;
 
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+        meshRenderer = GetComponent<MeshRenderer>();
+    }
+
     private void Start()
     {
         zUnitMovement = 30f;
-        rb = GetComponent<Rigidbody>();
-        meshRenderer = GetComponent<MeshRenderer>();
 
         SetObjectProperties();
     }
@@ -39,25 +42,25 @@ public class ItemComponent : MonoBehaviour
             case EItemState.FIXED:
                 rb.isKinematic = true;
                 rb.useGravity = false;
-                meshRenderer.material = normalMaterial;
+                meshRenderer.material = PlayerController.instance.normalMaterial;
                 break;
 
             case EItemState.SILHOUETTE:
                 rb.isKinematic = true;
                 rb.useGravity = false;
-                meshRenderer.material = silhouetteMaterial;
+                meshRenderer.material = PlayerController.instance.silhouetteMaterial;
                 break;
 
             case EItemState.BROKEN:
                 rb.isKinematic = false;
                 rb.useGravity = true;
-                meshRenderer.material = normalMaterial;
+                meshRenderer.material = PlayerController.instance.normalMaterial;
                 break;
 
             case EItemState.PICKEDUP:
                 rb.isKinematic = true;
                 rb.useGravity = false;
-                meshRenderer.material = normalMaterial;
+                meshRenderer.material = PlayerController.instance.normalMaterial;
                 break;
         }
     }
@@ -106,7 +109,7 @@ public class ItemComponent : MonoBehaviour
 
     }
 
-    void SetState(EItemState itemState)
+    public void SetState(EItemState itemState)
     {
         if (state == itemState)
         {

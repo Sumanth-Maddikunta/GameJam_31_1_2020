@@ -6,8 +6,12 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
     public ItemComponent currentHandling = null;
+
+    public Material silhouetteMaterial;
+    public Material normalMaterial;
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if(instance == null)
         {
