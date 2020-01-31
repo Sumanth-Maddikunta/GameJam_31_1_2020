@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemComponent : MonoBehaviour
 {
     public EItem item = EItem.NONE;
-    public EItemState state = EItemState.NONE;
+    [HideInInspector]public EItemState state = EItemState.NONE;
     public int componentId = 0;
 
     public Material silhouetteMaterial;
@@ -19,31 +19,49 @@ public class ItemComponent : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         meshRenderer = GetComponent<MeshRenderer>();
 
+        SetObjectProperties();
+    }
+
+    public void SetObjectProperties()
+    {
         switch (state)
         {
-            case EItemState.NONE:
-                break;
             case EItemState.FIXED:
                 rb.isKinematic = true;
                 rb.useGravity = false;
                 meshRenderer.material = normalMaterial;
-
                 break;
+
             case EItemState.SILHOUETTE:
                 rb.isKinematic = true;
                 rb.useGravity = false;
                 meshRenderer.material = silhouetteMaterial;
-
                 break;
+
             case EItemState.BROKEN:
                 rb.isKinematic = false;
                 rb.useGravity = true;
                 meshRenderer.material = normalMaterial;
-
                 break;
+
+            case EItemState.PICKEDUP:
+                rb.isKinematic = true;
+                rb.useGravity = false;
+                meshRenderer.material = normalMaterial;
+                break; 
         }
     }
 
+    void SetState(EItemState itemState)
+    {
+        if(state == itemState)
+        {
+            return;
+        }
+
+        state = itemState;
+        SetObjectProperties();
+    }
 }
 
 public enum EItem
@@ -57,6 +75,7 @@ public enum EItemState
     NONE = -1,
     FIXED,
     SILHOUETTE,
+    PICKEDUP,
     BROKEN,
 
 }
