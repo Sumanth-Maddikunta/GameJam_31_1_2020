@@ -17,8 +17,7 @@ public class GameManager : MonoBehaviour
         else if(instance != this)
         {
             Destroy(this.gameObject);
-        }
-        currentYRotation = currentObject.transform.localRotation.y;
+        }       
     }
 
     public float rotationTime = 1f;
