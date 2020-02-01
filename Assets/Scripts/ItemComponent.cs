@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
+//[RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(MeshRenderer))]
 public class ItemComponent : MonoBehaviour
 {
@@ -11,7 +11,7 @@ public class ItemComponent : MonoBehaviour
     [HideInInspector] public EItemState state = EItemState.NONE;
     public int componentId = 0;
 
-    public Rigidbody rb;
+    //public Rigidbody rb;
     public MeshRenderer meshRenderer;
 
     private float mZPos;
@@ -24,7 +24,7 @@ public class ItemComponent : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
         meshRenderer = GetComponent<MeshRenderer>();
     }
 
@@ -40,26 +40,26 @@ public class ItemComponent : MonoBehaviour
         switch (state)
         {
             case EItemState.FIXED:
-                rb.isKinematic = true;
-                rb.useGravity = false;
+                //rb.isKinematic = true;
+                //rb.useGravity = false;
                 meshRenderer.material = PlayerController.instance.normalMaterial;
                 break;
 
             case EItemState.SILHOUETTE:
-                rb.isKinematic = true;
-                rb.useGravity = false;
+                //rb.isKinematic = true;
+                //rb.useGravity = false;
                 meshRenderer.material = PlayerController.instance.silhouetteMaterial;
                 break;
 
             case EItemState.BROKEN:
-                rb.isKinematic = false;
-                rb.useGravity = true;
+                //rb.isKinematic = false;
+                //rb.useGravity = true;
                 meshRenderer.material = PlayerController.instance.normalMaterial;
                 break;
 
             case EItemState.PICKEDUP:
-                rb.isKinematic = true;
-                rb.useGravity = false;
+                //rb.isKinematic = true;
+                //rb.useGravity = false;
                 meshRenderer.material = PlayerController.instance.normalMaterial;
                 break;
         }
@@ -68,6 +68,11 @@ public class ItemComponent : MonoBehaviour
 
     void Update()
     {
+        if(state == EItemState.FIXED || state == EItemState.SILHOUETTE)
+        {
+            return;
+        }
+
         if (isSelected && PlayerController.instance.currentHandling == this)
         {
             pos.z = 0;
