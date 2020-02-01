@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-    [RequireComponent(typeof(AudioSource))]
+    //[RequireComponent(typeof(AudioSource))]
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
 
     AudioSource audioSource;
     public List<AudioClass> audios = new List<AudioClass>();
+
+    [EnumNamedArray(typeof(EAudioClip))]
+    public List<AudioClip> clips = new List<AudioClip>();
 
     private void Awake()
     {
@@ -27,7 +30,8 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        //audioSource = GetComponent<AudioSource>();
+        PlayClip(EAudioClip.BACKGROUND_MUSIC,true,true);
     }
 
     public void PlayAudioClip(string name)
@@ -44,7 +48,30 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    public void PlayClip(EAudioClip clip, bool loop = false, bool dontDestroy = false,float destroyAfter = 0)
+    {
+        if(clips[(int)clip] == null)
+        {
+            return;
+        }
 
+        AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.loop = loop;
+        audioSource.clip = clips[(int)clip];
+        audioSource.Play();
+        if(!dontDestroy)
+        {
+            Destroy(audioSource, destroyAfter);
+        }
+    }
+}
+
+public enum EAudioClip
+{
+    NONE = -1,
+    BACKGROUND_MUSIC,
+    SUCCESS_SFX,
+    FAILURE_SFX,
 }
 
 [System.Serializable]
