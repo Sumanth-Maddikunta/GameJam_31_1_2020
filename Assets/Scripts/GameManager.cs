@@ -151,7 +151,7 @@ public class GameManager : MonoBehaviour
     void GenerateLevelObject()
     {
         currentObject.SetActive(true);
-        PlayerController.instance.silhouetteGenerator.GenerateSilhouetteObjects();
+        //PlayerController.instance.silhouetteGenerator.GenerateSilhouetteObjects();
     }
 
     void OnMenuCreditsClicked()

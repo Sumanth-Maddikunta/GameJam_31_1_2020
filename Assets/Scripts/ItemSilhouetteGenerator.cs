@@ -18,14 +18,16 @@ public class ItemSilhouetteGenerator : MonoBehaviour
     ObjectControl control;
     private void Start()
     {
-        control = GetComponent<ObjectControl>();
+        Debug.LogError("START");
+
+        control = PlayerController.instance.control;
 
         components = new List<ItemComponent>();
         childCount = control.brokenObjs.Count;
 
         silCount = Mathf.CeilToInt((silChance * childCount));
 
-        //GenerateSilhouetteObjects();
+        GenerateSilhouetteObjects();
 
         GameManager.instance.OnRotationCompleted = OnObjectRotated;
         //MoveToPlacements();
