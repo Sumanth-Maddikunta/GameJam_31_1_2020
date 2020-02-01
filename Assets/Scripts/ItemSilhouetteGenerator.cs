@@ -27,7 +27,7 @@ public class ItemSilhouetteGenerator : MonoBehaviour
         silCount = Mathf.CeilToInt((silChance * childCount));
         totalBrokenCount = silCount;
 
-        GenerateSilhouetteObjects();
+        //GenerateSilhouetteObjects();
 
         GameManager.instance.OnRotationCompleted = OnObjectRotated;
         //MoveToPlacements();

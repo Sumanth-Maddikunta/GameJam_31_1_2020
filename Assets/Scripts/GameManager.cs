@@ -35,14 +35,16 @@ public class GameManager : MonoBehaviour
     public System.Action OnRotationCompleted;
     public Image playerHappienessMeter;
 
-    GameObject orthoCam;
-    GameObject persCam;
+    public Transform spawnPosition;
+    public GameObject orthoCam;
+    public GameObject persCam;
     bool isOrtho;
 
     #endregion
 
     #region
     public int levelNo;
+    int maxLevels;
     public List<GameObject> levelObjects;
     #endregion
 
@@ -56,7 +58,11 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
+        DeleteLevelData();
+        maxLevels = levelObjects.Count;
+        GetCurrentLevel();
+        Debug.LogError("LEVEL : " + levelNo);
+            
         gameplayLeftButton.onClick.RemoveAllListeners();
         gameplayRightButton.onClick.RemoveAllListeners();
         menuPlayButton.onClick.RemoveAllListeners();
@@ -118,6 +124,8 @@ public class GameManager : MonoBehaviour
 
     public void SwitchCamera()
     {
+        return;
+
         if(isOrtho)
         {
             orthoCam.SetActive(false);
@@ -134,6 +142,7 @@ public class GameManager : MonoBehaviour
     public void SetCurrentGameObject(int level,bool setActive = true)
     {
         currentObject = Instantiate( levelObjects[level - 1]);
+        currentObject.transform.position = spawnPosition.position;
         currentObject.SetActive(setActive);
         currentYRotation = currentObject.transform.rotation.eulerAngles.y;
         PlayerController.instance.control = currentObject.GetComponent<ObjectControl>();
@@ -213,8 +222,15 @@ public class GameManager : MonoBehaviour
 
     public void OnLevelCompleted()
     {
+        Destroy(currentObject);
         ActivatePanel(EPanel.LevelCompletedPanel);
+        playerHappienessMeter.fillAmount = 0;
         levelNo++;
+        if(levelNo > maxLevels)
+        {
+            ActivatePanel(EPanel.GameOverPanel);
+        }
+
         SaveCurrentLevel();
     }
 
@@ -236,9 +252,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public int GetCurrentLevel()
+    public void GetCurrentLevel()
     {
-        return levelNo;
+        levelNo = PlayerPrefs.GetInt("Current_Level",1);
     }
 
     public void SaveCurrentLevel()
@@ -261,6 +277,6 @@ public enum EPanel
     MenuPanel,
     CreditsPanel,
     PausePanel,
-    DialoguePanel
+    DialoguePanel,
     None
 }

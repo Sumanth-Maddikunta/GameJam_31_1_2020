@@ -21,7 +21,18 @@ public class ObjectControl : MonoBehaviour
 
     private void Awake()
     {
-        
+        StartCoroutine(SetPlacements(0.1f));
+
+        //for (int i = 0; i < placmeents.Count; ++i)
+        //{
+        //    brokenObjs[i].transform.DOMove(placmeents[i].transform.position, 1);
+        //}
+    }
+
+    public IEnumerator SetPlacements(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
         foreach (GameObject obj in brokenObjs)
         {
             startZPos.Add(obj.transform.localPosition.z);
@@ -29,21 +40,25 @@ public class ObjectControl : MonoBehaviour
             placer.transform.position = obj.transform.position;
             placer.transform.rotation = obj.transform.rotation;
             oldPositions.Add(placer);
-            placer.transform.parent = transform;          
-           
+            placer.transform.parent = transform;
+
         }
 
-        
 
-        foreach(GameObject GO in placmeents)
+
+        foreach (GameObject GO in placmeents)
         {
             GO.transform.parent = null;
         }
+        PlayerController.instance.silhouetteGenerator.GenerateSilhouetteObjects();
+    }
 
-        //for (int i = 0; i < placmeents.Count; ++i)
-        //{
-        //    brokenObjs[i].transform.DOMove(placmeents[i].transform.position, 1);
-        //}
+    private void OnDestroy()
+    {
+        foreach (GameObject GO in placmeents)
+        {
+            Destroy(GO);
+        }
     }
 
     private void Start()

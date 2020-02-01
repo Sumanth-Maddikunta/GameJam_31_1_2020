@@ -112,6 +112,11 @@ public class ItemComponent : MonoBehaviour
                         PlayerController.instance.silhouetteGenerator.silCount++;
                         float fill = (float)PlayerController.instance.silhouetteGenerator.silCount / (float)PlayerController.instance.silhouetteGenerator.totalBrokenCount;
                         GameManager.instance.UpdateFill(fill);
+
+                        if(PlayerController.instance.silhouetteGenerator.silCount == PlayerController.instance.silhouetteGenerator.totalBrokenCount)
+                        {
+                            GameManager.instance.OnLevelCompleted();
+                        }
                     }
                 }
             }
