@@ -29,8 +29,7 @@ public class ObjectControl : MonoBehaviour
             placer.transform.position = obj.transform.position;
             placer.transform.rotation = obj.transform.rotation;
             oldPositions.Add(placer);
-            placer.transform.parent = transform;
-          
+            placer.transform.parent = transform;          
            
         }
 
