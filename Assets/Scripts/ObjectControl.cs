@@ -17,7 +17,7 @@ public class ObjectControl : MonoBehaviour
     RaycastHit hit;
     Ray ray;
 
-    private void Start()
+    private void Awake()
     {
         foreach (GameObject obj in brokenObjs)
         {
@@ -29,10 +29,10 @@ public class ObjectControl : MonoBehaviour
             placer.transform.parent = transform;
         }
 
-        for (int i = 0; i < placmeents.Count; ++i)
-        {
-            brokenObjs[i].transform.DOMove(placmeents[i].transform.position, 1);
-        }
+        //for (int i = 0; i < placmeents.Count; ++i)
+        //{
+        //    brokenObjs[i].transform.DOMove(placmeents[i].transform.position, 1);
+        //}
     }
 
     //void Update()

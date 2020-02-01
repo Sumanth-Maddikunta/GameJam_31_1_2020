@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 //[RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(MeshRenderer))]
@@ -14,24 +15,23 @@ public class ItemComponent : MonoBehaviour
     //public Rigidbody rb;
     public MeshRenderer meshRenderer;
 
-    private float mZPos;
-    private Vector3 mOffset;
-    private Vector3 pos;
-    private bool isSelected = false;
-    private bool onMouseOver = false;
+    public ItemComponent SnapComponent;
 
-    public float zUnitMovement = 50f;
+    float distance = 10;
+
+    float mZPos;
+
+    ObjectControl control;
+
 
     private void Awake()
     {
-        //rb = GetComponent<Rigidbody>();
+        control = transform.GetComponentInParent<ObjectControl>();
         meshRenderer = GetComponent<MeshRenderer>();
     }
 
     private void Start()
     {
-        zUnitMovement = 30f;
-
         SetObjectProperties();
     }
 
@@ -40,78 +40,21 @@ public class ItemComponent : MonoBehaviour
         switch (state)
         {
             case EItemState.FIXED:
-                //rb.isKinematic = true;
-                //rb.useGravity = false;
                 meshRenderer.material = PlayerController.instance.normalMaterial;
                 break;
 
             case EItemState.SILHOUETTE:
-                //rb.isKinematic = true;
-                //rb.useGravity = false;
                 meshRenderer.material = PlayerController.instance.silhouetteMaterial;
                 break;
 
             case EItemState.BROKEN:
-                //rb.isKinematic = false;
-                //rb.useGravity = true;
                 meshRenderer.material = PlayerController.instance.normalMaterial;
                 break;
 
             case EItemState.PICKEDUP:
-                //rb.isKinematic = true;
-                //rb.useGravity = false;
                 meshRenderer.material = PlayerController.instance.normalMaterial;
                 break;
         }
-    }
-
-
-    void Update()
-    {
-        if(state == EItemState.FIXED || state == EItemState.SILHOUETTE)
-        {
-            return;
-        }
-
-        if (isSelected && PlayerController.instance.currentHandling == this)
-        {
-            pos.z = 0;
-
-            if (Input.GetAxis("Mouse ScrollWheel") > 0f) // forward
-            {
-                pos.z += zUnitMovement * Time.deltaTime;
-            }
-
-            if (Input.GetAxis("Mouse ScrollWheel") < 0f) // backward
-            {
-                pos.z -= zUnitMovement * Time.deltaTime;
-            }
-            mOffset += pos;
-        }
-
-        if (onMouseOver )
-        {
-            if (Input.GetMouseButtonDown(1))//This acts as a replacement for OnMouseDown since it dosen't work with right mouse click
-            {
-                if (PlayerController.instance.currentHandling == null)
-                {
-                    PlayerController.instance.currentHandling = this;
-                    mZPos = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
-                    mOffset = gameObject.transform.position - GetMouseWorldPosition();
-                    isSelected = true;
-                }
-            }
-            if (Input.GetMouseButton(1) && PlayerController.instance.currentHandling == this)//Acts as drag
-            {
-                transform.position = GetMouseWorldPosition() + mOffset;
-            }
-            if (Input.GetMouseButtonUp(1) && PlayerController.instance.currentHandling == this)//Acts as mouse up
-            {
-                PlayerController.instance.currentHandling = null;
-                isSelected = false;
-            }
-        }
-
     }
 
     public void SetState(EItemState itemState)
@@ -124,25 +67,98 @@ public class ItemComponent : MonoBehaviour
         state = itemState;
         SetObjectProperties();
     }
-    public void OnMouseOver()
+    private void OnMouseDown()
     {
-        onMouseOver = true;
+        for (int i = 0; i < control.brokenObjs.Count; ++i)
+        {
+            if (this.gameObject == control.brokenObjs[i] && state == EItemState.BROKEN)
+            {
+                mZPos = Camera.main.WorldToScreenPoint(control.oldPositions[i].transform.position).z;
+            }
+        }
+    }
+    private void OnMouseDrag()
+    {
+        if(state != EItemState.BROKEN)
+        {
+            return;
+        }
+
+        for (int i = 0; i < control.brokenObjs.Count; ++i)
+        {
+            if (this.gameObject == control.brokenObjs[i])
+            {
+                Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, mZPos);
+                Vector3 objectPos = Camera.main.ScreenToWorldPoint(mousePos);
+                objectPos.z = control.oldPositions[i].transform.position.z;
+                transform.position = objectPos;
+
+                if(SnapComponent != null)
+                {
+                    if (Vector3.Distance(SnapComponent.transform.position, transform.position) < 0.2f)
+                    {
+                        transform.DOMove(SnapComponent.transform.position, 0.2f);
+                        transform.DORotate(SnapComponent.transform.rotation.eulerAngles, 2.0f);
+                        SetState(EItemState.FIXED);
+                        Destroy(SnapComponent.gameObject);
+                        SnapComponent = null;
+                    }
+                }
+            }
+        }
     }
 
-    public void OnMouseUp()
+    private void OnMouseUp()
     {
-        onMouseOver = false;
-        PlayerController.instance.currentHandling = null;
-    }
-    
-    private Vector3 GetMouseWorldPosition()
-    {
-        Vector3 mousePoint = Input.mousePosition;
-        mousePoint.z = mZPos;
-        return Camera.main.ScreenToWorldPoint(mousePoint);
+        if (state != EItemState.BROKEN)
+        {
+            return;
+        }
 
+        for (int i = 0; i < control.brokenObjs.Count; ++i)
+        {
+            if (this.gameObject == control.brokenObjs[i])
+            {
+                transform.DOMove(control.placmeents[i].transform.position, 0.2f).SetEase(Ease.OutBack);
+            }
+        }
     }
 
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if(state == EItemState.SILHOUETTE)
+    //    {
+    //        SnapComponent = other.gameObject.GetComponent<ItemComponent>();
+    //    }
+    //}
+
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if(SnapComponent == null || state != EItemState.SILHOUETTE)
+    //    {
+    //        return;
+    //    }
+
+    //    if(SnapComponent.componentId == componentId)
+    //    {
+    //        if(Vector3.Distance(SnapComponent.transform.position,transform.position) < 0.2f)
+    //        {
+    //            SnapComponent.transform.DOMove(transform.position, 0.2f);
+    //            SnapComponent.transform.DORotate(transform.rotation.eulerAngles, 2.0f);
+    //            SnapComponent.SetState(EItemState.FIXED);
+    //            SnapComponent = null;
+    //        }
+    //    }
+    //}
+
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (state != EItemState.SILHOUETTE)
+    //    {
+    //        return;
+    //    }
+    //    SnapComponent = null;
+    //}
 }
 
 public enum EItem
