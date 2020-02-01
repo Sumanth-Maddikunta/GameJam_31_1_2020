@@ -22,4 +22,10 @@ Game Completed
 Dialogues panel
 Credits
 
+Sounds:
+Bg - done
+button clicks - 
+objects locked sound effect - 
+object not placed
+
  

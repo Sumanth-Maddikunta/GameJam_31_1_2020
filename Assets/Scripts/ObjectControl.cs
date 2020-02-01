@@ -7,6 +7,8 @@ public class ObjectControl : MonoBehaviour
 {
 
     public List<GameObject> brokenObjs = new List<GameObject>();
+
+    
     public List<GameObject> placmeents = new List<GameObject>();
 
     [HideInInspector]public List<float> startZPos = new List<float>();
@@ -19,6 +21,7 @@ public class ObjectControl : MonoBehaviour
 
     private void Awake()
     {
+        
         foreach (GameObject obj in brokenObjs)
         {
             startZPos.Add(obj.transform.localPosition.z);
@@ -26,8 +29,11 @@ public class ObjectControl : MonoBehaviour
             placer.transform.position = obj.transform.position;
             placer.transform.rotation = obj.transform.rotation;
             oldPositions.Add(placer);
-            placer.transform.parent = transform;
+            placer.transform.parent = transform;          
+           
         }
+
+        
 
         foreach(GameObject GO in placmeents)
         {

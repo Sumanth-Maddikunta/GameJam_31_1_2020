@@ -113,7 +113,8 @@ public class GameManager : MonoBehaviour
                 gameplayRightButton.interactable = true;
             if (OnRotationCompleted != null)
             {
-                OnRotationCompleted();
+                    // OnRotationCompleted();
+                    PlayerController.instance.silhouetteGenerator.OnObjectRotated();
             }
             });
         }
@@ -134,8 +135,9 @@ public class GameManager : MonoBehaviour
                 gameplayRightButton.interactable = true;
             if(OnRotationCompleted != null)
             {
-                OnRotationCompleted();
-            }
+                    // OnRotationCompleted();
+                    PlayerController.instance.silhouetteGenerator.OnObjectRotated();
+                }
             });
         }
     }
