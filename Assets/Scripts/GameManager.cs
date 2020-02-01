@@ -36,33 +36,57 @@ public class GameManager : MonoBehaviour
     public GameObject currentObject;
     float currentYRotation;
     bool canRotate = true;
+    public bool inputEnabled = true;
     Tween rotationTween;
 
     
     public void GetCurrentGameObject()
     {
         currentObject = PlayerController.instance.control.gameObject;
+        currentYRotation = currentObject.transform.rotation.eulerAngles.y;
     }
 
     public void RotateLeft()
     {      
-        if (currentObject != null && (rotationTween.IsComplete() || rotationTween == null))
+        if (currentObject != null)
         {
+            inputEnabled = false;
+            leftButton.interactable = false;
+            rightButton.interactable = false;
             currentYRotation -= 90f;
             Quaternion quaternion = Quaternion.Euler(0, currentYRotation, 0);
-            rotationTween =  currentObject.transform.DORotateQuaternion(quaternion, rotationTime).SetEase(Ease.InOutSine);
-            OnRotationCompleted();
+            rotationTween =  currentObject.transform.DORotateQuaternion(quaternion, rotationTime).SetEase(Ease.InOutSine).OnComplete(() =>
+            {
+                leftButton.interactable = true;
+                rightButton.interactable = true;
+            if (OnRotationCompleted != null)
+            {
+                OnRotationCompleted();
+            }
+            });
+
         }
     }
 
     public void RotateRight()
     {       
-        if (currentObject != null && (rotationTween.IsComplete() || rotationTween == null))
+        if (currentObject != null)
         {
+            inputEnabled = false;
+            leftButton.interactable = false;
+            rightButton.interactable = false;
             currentYRotation += 90f;
             Quaternion quaternion = Quaternion.Euler(0, currentYRotation, 0);
-            rotationTween = currentObject.transform.DORotateQuaternion(quaternion, rotationTime).SetEase(Ease.InOutSine);
-            OnRotationCompleted();
+            rotationTween = currentObject.transform.DORotateQuaternion(quaternion, rotationTime).SetEase(Ease.InOutSine).OnComplete(()=> 
+            {
+                leftButton.interactable = true;
+                rightButton.interactable = true;
+            if(OnRotationCompleted != null)
+            {
+                OnRotationCompleted();
+            }
+            });
+
 
         }
     }

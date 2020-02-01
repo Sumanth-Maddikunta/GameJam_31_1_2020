@@ -70,6 +70,11 @@ public class ItemComponent : MonoBehaviour
     }
     private void OnMouseDown()
     {
+        if (state != EItemState.BROKEN || !GameManager.instance.inputEnabled)
+        {
+            return;
+        }
+
         for (int i = 0; i < control.brokenObjs.Count; ++i)
         {
             if (this.gameObject == control.brokenObjs[i] && state == EItemState.BROKEN)
@@ -80,7 +85,7 @@ public class ItemComponent : MonoBehaviour
     }
     private void OnMouseDrag()
     {
-        if(state != EItemState.BROKEN)
+        if(state != EItemState.BROKEN || !GameManager.instance.inputEnabled)
         {
             return;
         }
@@ -112,7 +117,7 @@ public class ItemComponent : MonoBehaviour
 
     private void OnMouseUp()
     {
-        if (state != EItemState.BROKEN)
+        if (state != EItemState.BROKEN || !GameManager.instance.inputEnabled)
         {
             return;
         }

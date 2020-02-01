@@ -57,6 +57,7 @@ public class ItemSilhouetteGenerator : MonoBehaviour
                 ItemComponent newComp = Instantiate(components[i],transform);
                 newComp.SetState(EItemState.SILHOUETTE);
                 newComp.transform.position = components[i].transform.position;
+                newComp.transform.rotation = components[i].transform.rotation;
                 components[i].transform.position = control.placmeents[i].transform.position;
                 components[i].transform.parent = null;
                 components[i].SnapComponent = newComp;
@@ -79,13 +80,22 @@ public class ItemSilhouetteGenerator : MonoBehaviour
 
     public void OnObjectRotated()
     {
-        for(int i = 0;i < components.Count;i++)
+        float time = GameManager.instance.rotationTime / 2;
+        for (int i = 0; i < components.Count; i++)
         {
             ItemComponent comp = components[i];
-            if(comp.state.Equals(EItemState.BROKEN))
+            if (comp.state.Equals(EItemState.BROKEN))
             {
-                comp.transform.rotation = comp.SnapComponent.transform.rotation;
+                comp.transform.DORotateQuaternion(comp.SnapComponent.transform.rotation,time);
             }
         }
+        StartCoroutine(EnableInput(time));
+    }
+
+    IEnumerator EnableInput(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        GameManager.instance.inputEnabled = true;
+
     }
 }
