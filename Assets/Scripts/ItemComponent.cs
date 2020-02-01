@@ -109,6 +109,9 @@ public class ItemComponent : MonoBehaviour
                         SetState(EItemState.FIXED);
                         Destroy(SnapComponent.gameObject);
                         SnapComponent = null;
+                        PlayerController.instance.silhouetteGenerator.silCount++;
+                        float fill = (float)PlayerController.instance.silhouetteGenerator.silCount / (float)PlayerController.instance.silhouetteGenerator.totalBrokenCount;
+                        GameManager.instance.UpdateFill(fill);
                     }
                 }
             }
@@ -129,6 +132,7 @@ public class ItemComponent : MonoBehaviour
                 transform.DOMove(control.placmeents[i].transform.position, 0.2f).SetEase(Ease.OutBack);
             }
         }
+
     }
 
     //private void OnTriggerEnter(Collider other)
