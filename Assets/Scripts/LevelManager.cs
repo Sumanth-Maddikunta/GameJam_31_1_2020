@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
-    public int levelNo;
+    //public int levelNo;
     public GameObject button;
      List<GameObject> questionButtons= new List<GameObject>();
     //public List<Text> questionTexts;
@@ -31,10 +31,10 @@ public class LevelManager : MonoBehaviour
 
     private void OnEnable()
     {
-        for(int i=0;i<levels[levelNo].questions.Count;++i)
+        for(int i=0;i<levels[GameManager.instance.levelNo].questions.Count;++i)
         {
             GameObject quesButton=  Instantiate(button, QuestionPanel.transform) as GameObject;
-            quesButton.transform.GetChild(0).GetComponent<Text>().text = levels[levelNo].questions[i];
+            quesButton.transform.GetChild(0).GetComponent<Text>().text = levels[GameManager.instance.levelNo].questions[i];
             QuestionNumber questionNumberScript = quesButton.GetComponent<QuestionNumber>();
             questionNumberScript.questionNo = i;
             quesButton.GetComponent<Button>().onClick.AddListener(() => { QuestionNo(questionNumberScript.questionNo); });
@@ -49,7 +49,7 @@ public class LevelManager : MonoBehaviour
         print(no);
         Destroy(questionButtons[no]);
         QuestionPanel.SetActive(false);
-        answerText.text = levels[levelNo].answers[no];
+        answerText.text = levels[GameManager.instance.levelNo].answers[no];
         answerText.gameObject.SetActive(true);
     }
 
@@ -65,17 +65,6 @@ public class LevelManager : MonoBehaviour
         }
 
     }
-
-    public int GetCurrentLevel()
-    {
-        return levelNo;
-    }
-
-    public void SaveCurrentLevel()
-    {
-        PlayerPrefs.SetInt("Current_Level", levelNo);
-    }
-
 }
 [System.Serializable]
 public class Level

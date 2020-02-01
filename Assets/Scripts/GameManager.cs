@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public Button gameplayPauseButton;
     public Button gamePlayResumeButton;
     public Button gamePlayExitButton;
+    public Button nextLevelButton;
     #endregion
 
 
@@ -34,6 +35,15 @@ public class GameManager : MonoBehaviour
     public System.Action OnRotationCompleted;
     public Image playerHappienessMeter;
 
+    GameObject orthoCam;
+    GameObject persCam;
+    bool isOrtho;
+
+    #endregion
+
+    #region
+    public int levelNo;
+    public List<GameObject> levelObjects;
     #endregion
 
     void Awake()
@@ -55,21 +65,22 @@ public class GameManager : MonoBehaviour
         gameplayPauseButton.onClick.RemoveAllListeners();
         gamePlayResumeButton.onClick.RemoveAllListeners();
         gamePlayExitButton.onClick.RemoveAllListeners();
-
+        nextLevelButton.onClick.RemoveAllListeners();
 
         gameplayLeftButton.onClick.AddListener(RotateLeft);
         gameplayRightButton.onClick.AddListener(RotateRight);
-
         menuPlayButton.onClick.AddListener(OnMenuPlayClicked);
         menuCreditsButton.onClick.AddListener(OnMenuCreditsClicked);
         menuExitButton.onClick.AddListener(OnExitClicked);
         gameplayPauseButton.onClick.AddListener(OnGamePlayPauseClicked);
         gamePlayResumeButton.onClick.AddListener(OnGameplayResumeClicked);
         gamePlayExitButton.onClick.AddListener(OnExitClicked);
+        nextLevelButton.onClick.AddListener(LoadLevel);
 
         DisableAllPanels();
         ActivatePanel(EPanel.MenuPanel);
     }
+
 
     void DisableAllPanels()
     {
@@ -92,11 +103,41 @@ public class GameManager : MonoBehaviour
         currentActivePanel = panel;
     }
 
-    public void GetCurrentGameObject(bool setActive = true)
+    public void LoadLevel()
     {
-        currentObject = PlayerController.instance.control.gameObject;
+        SwitchCamera();
+        ActivatePanel(EPanel.DialoguePanel);
+    }
+
+    public void OnDialoguesCompleted()
+    {
+        SwitchCamera();
+        ActivatePanel(EPanel.GameplayPanel);
+        SetCurrentGameObject(levelNo, true);
+    }
+
+    public void SwitchCamera()
+    {
+        if(isOrtho)
+        {
+            orthoCam.SetActive(false);
+            persCam.SetActive(true);
+        }
+        else
+        {
+            orthoCam.SetActive(true);
+            persCam.SetActive(false);
+        }
+        isOrtho = !isOrtho;
+    }
+
+    public void SetCurrentGameObject(int level,bool setActive = true)
+    {
+        currentObject = Instantiate( levelObjects[level - 1]);
         currentObject.SetActive(setActive);
         currentYRotation = currentObject.transform.rotation.eulerAngles.y;
+        PlayerController.instance.control = currentObject.GetComponent<ObjectControl>();
+        PlayerController.instance.silhouetteGenerator = currentObject.GetComponent<ItemSilhouetteGenerator>();
     }
 
     public void RotateLeft()
@@ -145,14 +186,7 @@ public class GameManager : MonoBehaviour
 
     void OnMenuPlayClicked()
     {
-        ActivatePanel(EPanel.GameplayPanel);
-        GenerateLevelObject();
-    }
-
-    void GenerateLevelObject()
-    {
-        currentObject.SetActive(true);
-        //PlayerController.instance.silhouetteGenerator.GenerateSilhouetteObjects();
+        LoadLevel();
     }
 
     void OnMenuCreditsClicked()
@@ -177,6 +211,13 @@ public class GameManager : MonoBehaviour
         inputEnabled = true;
     }
 
+    public void OnLevelCompleted()
+    {
+        ActivatePanel(EPanel.LevelCompletedPanel);
+        levelNo++;
+        SaveCurrentLevel();
+    }
+
     public void UpdateFill(float value)
     {
         StartCoroutine(UpdateFillCoroutine(value));
@@ -194,6 +235,21 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
     }
+
+    public int GetCurrentLevel()
+    {
+        return levelNo;
+    }
+
+    public void SaveCurrentLevel()
+    {
+        PlayerPrefs.SetInt("Current_Level", levelNo);
+    }
+
+    public void DeleteLevelData()
+    {
+        PlayerPrefs.DeleteAll();
+    }
 }
 
 public enum EPanel
@@ -205,5 +261,6 @@ public enum EPanel
     MenuPanel,
     CreditsPanel,
     PausePanel,
+    DialoguePanel
     None
 }
