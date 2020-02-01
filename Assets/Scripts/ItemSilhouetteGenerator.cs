@@ -25,7 +25,7 @@ public class ItemSilhouetteGenerator : MonoBehaviour
 
         silCount = Mathf.CeilToInt((silChance * childCount));
 
-        GenerateSilhouetteObjects();
+        //GenerateSilhouetteObjects();
 
         GameManager.instance.OnRotationCompleted = OnObjectRotated;
         //MoveToPlacements();
@@ -39,7 +39,7 @@ public class ItemSilhouetteGenerator : MonoBehaviour
         }
     }
 
-    void GenerateSilhouetteObjects()
+    public void GenerateSilhouetteObjects()
     {
         for (int i = 0; i < childCount; i++)
         {
@@ -58,7 +58,7 @@ public class ItemSilhouetteGenerator : MonoBehaviour
                 newComp.SetState(EItemState.SILHOUETTE);
                 newComp.transform.position = components[i].transform.position;
                 newComp.transform.rotation = components[i].transform.rotation;
-                components[i].transform.position = control.placmeents[i].transform.position;
+                components[i].transform.DOMove(control.placmeents[i].transform.position, .8f);
                 components[i].transform.parent = null;
                 components[i].SnapComponent = newComp;
             }

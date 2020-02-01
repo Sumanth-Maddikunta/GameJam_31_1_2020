@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    void Start()
+    void Awake()
     {
         if(instance == null)
         {
@@ -88,11 +88,13 @@ public class GameManager : MonoBehaviour
         {
             panels[(int)panel].gameObject.SetActive(true);
         }
+        currentActivePanel = panel;
     }
 
-    public void GetCurrentGameObject()
+    public void GetCurrentGameObject(bool setActive = true)
     {
         currentObject = PlayerController.instance.control.gameObject;
+        currentObject.SetActive(setActive);
         currentYRotation = currentObject.transform.rotation.eulerAngles.y;
     }
 
@@ -140,7 +142,14 @@ public class GameManager : MonoBehaviour
 
     void OnMenuPlayClicked()
     {
-        
+        ActivatePanel(EPanel.GameplayPanel);
+        GenerateLevelObject();
+    }
+
+    void GenerateLevelObject()
+    {
+        currentObject.SetActive(true);
+        PlayerController.instance.silhouetteGenerator.GenerateSilhouetteObjects();
     }
 
     void OnMenuCreditsClicked()

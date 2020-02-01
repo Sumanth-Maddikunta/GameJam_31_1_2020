@@ -289,13 +289,14 @@ GameObject:
   m_Component:
   - component: {fileID: 2632596862468268910}
   - component: {fileID: 7057818101976598646}
+  - component: {fileID: 607198050}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2632596862468268910
 Transform:
   m_ObjectHideFlags: 0
@@ -382,6 +383,20 @@ MonoBehaviour:
   - {fileID: 7057818100842096143}
   startZPos: []
   oldPositions: []
+--- !u!114 &607198050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356574410205319549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ce953e31e6dde44a923b8fa258df99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  components: []
+  onRotated: 0
 --- !u!1 &1388164240756922731
 GameObject:
   m_ObjectHideFlags: 0

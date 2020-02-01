@@ -42,7 +42,7 @@ public class ObjectControl : MonoBehaviour
 
     private void Start()
     {
-        GameManager.instance.GetCurrentGameObject();
+        GameManager.instance.GetCurrentGameObject(false);
     }
 
     //void Update()
