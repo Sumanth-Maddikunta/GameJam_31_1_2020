@@ -29,7 +29,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void OnEnable()
     {
         for(int i=0;i<levels[levelNo].questions.Count;++i)
         {
