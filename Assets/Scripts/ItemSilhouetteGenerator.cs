@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using DG.Tweening;
 
+[RequireComponent(typeof(ObjectControl))]
 public class ItemSilhouetteGenerator : MonoBehaviour
 {
     public List<ItemComponent> components;
