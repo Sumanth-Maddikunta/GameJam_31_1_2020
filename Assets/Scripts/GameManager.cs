@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public bool inputEnabled = true;
     Tween rotationTween;
     public System.Action OnRotationCompleted;
+    public Image playerHappienessMeter;
 
     #endregion
 
@@ -174,6 +175,24 @@ public class GameManager : MonoBehaviour
     {
         ActivatePanel(EPanel.GameplayPanel);
         inputEnabled = true;
+    }
+
+    public void UpdateFill(float value)
+    {
+        StartCoroutine(UpdateFillCoroutine(value));
+    }
+
+    IEnumerator UpdateFillCoroutine(float value, float time = 0.5f)
+    {
+        float currentTime = 0f;
+        float startValue = playerHappienessMeter.fillAmount;
+
+        while (currentTime <= time)
+        {
+            currentTime += Time.deltaTime;
+            playerHappienessMeter.fillAmount = Mathf.Lerp(startValue, value, currentTime / time);
+            yield return null;
+        }
     }
 }
 

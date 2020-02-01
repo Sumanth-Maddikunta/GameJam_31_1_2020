@@ -11,21 +11,21 @@ public class ItemSilhouetteGenerator : MonoBehaviour
 
     float silChance = 0.5f;
     int childCount = 0;
-    int silCount = 0;
+    public int silCount = 0;
+    public int totalBrokenCount = 0;
 
     public bool onRotated;
 
     ObjectControl control;
     private void Start()
     {
-        Debug.LogError("START");
-
         control = PlayerController.instance.control;
 
         components = new List<ItemComponent>();
         childCount = control.brokenObjs.Count;
 
         silCount = Mathf.CeilToInt((silChance * childCount));
+        totalBrokenCount = silCount;
 
         GenerateSilhouetteObjects();
 
