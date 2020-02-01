@@ -825,28 +825,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6065595091693888842, guid: 7e7b6ca0ce47da348a795b4f0e279dce,
         type: 3}
-      propertyPath: m_RenderMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6065595091693888842, guid: 7e7b6ca0ce47da348a795b4f0e279dce,
-        type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 6774977}
-    - target: {fileID: 6065595091693888842, guid: 7e7b6ca0ce47da348a795b4f0e279dce,
-        type: 3}
-      propertyPath: m_PlaneDistance
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6065595091754438522, guid: 7e7b6ca0ce47da348a795b4f0e279dce,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6065595091754438520, guid: 7e7b6ca0ce47da348a795b4f0e279dce,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e7b6ca0ce47da348a795b4f0e279dce, type: 3}
