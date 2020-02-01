@@ -15,7 +15,7 @@ public class ItemSilhouetteGenerator : MonoBehaviour
         components = new List<ItemComponent>();
         childCount = transform.childCount;
 
-        silCount = (int)(silChance * childCount);
+        silCount = Mathf.CeilToInt((silChance * childCount));
 
         GenerateSilhouetteObjects();
     }
@@ -31,7 +31,7 @@ public class ItemSilhouetteGenerator : MonoBehaviour
             
             components[i].componentId = i + 1;
 
-            if (Random.value < silChance || (childCount - 1 - i) <= silCount)
+            if (silCount > 0 &&( Random.value < silChance || (childCount - 1 - i) <= silCount))
             {
                 silCount--;
                 components[i].SetState(EItemState.SILHOUETTE);

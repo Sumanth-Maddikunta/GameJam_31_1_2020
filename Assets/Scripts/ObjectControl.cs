@@ -26,6 +26,7 @@ public class ObjectControl : MonoBehaviour
             placer.transform.position = obj.transform.position;
             placer.transform.rotation = obj.transform.rotation;
             oldPositions.Add(placer);
+            placer.transform.parent = transform;
         }
 
         for (int i = 0; i < placmeents.Count; ++i)
