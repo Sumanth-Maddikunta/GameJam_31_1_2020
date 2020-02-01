@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+    [RequireComponent(typeof(AudioSource))]
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
+
     AudioSource audioSource;
     public List<AudioClass> audios = new List<AudioClass>();
 
@@ -16,7 +18,7 @@ public class SoundManager : MonoBehaviour
         }
         else
         {
-            if (instance != null)
+            if (instance != this)
             {
                 Destroy(this);
             }
