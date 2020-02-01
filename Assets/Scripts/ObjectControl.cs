@@ -40,6 +40,11 @@ public class ObjectControl : MonoBehaviour
         //}
     }
 
+    private void Start()
+    {
+        GameManager.instance.GetCurrentGameObject();
+    }
+
     //void Update()
     //{
     //    //float step = 5f* Time.deltaTime;
@@ -54,7 +59,7 @@ public class ObjectControl : MonoBehaviour
     //            {
     //                if (hit.transform.gameObject == brokenObjs[i])
     //                {
-                        
+
     //                    //float mPosX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x ;
     //                    //float mPosY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y ;
     //                    //float objZ = oldPositions[i].transform.position.z;
@@ -63,18 +68,18 @@ public class ObjectControl : MonoBehaviour
 
     //                    //mPos.x = mPosX * Mathf.Cos(0f * Mathf.Deg2Rad) - mPosY * Mathf.Sin(0f * Mathf.Deg2Rad);
     //                    //mPos.y = mPosX * Mathf.Sin(0f*Mathf.Deg2Rad)+ mPosY * Mathf.Cos(0f * Mathf.Deg2Rad);
-                                            
+
     //                    // mPos.z = objZ;
-                       
+
     //                    //hit.transform.position = mPos;
-                       
+
     //                }
     //            }
     //        }
     //    }
     //}
 
-    
+
     //IEnumerator Move(Transform onj,Vector3 StartPos,Vector3 TargetPos)
     //{
     //     Vector3 StartPosition  = StartPos;

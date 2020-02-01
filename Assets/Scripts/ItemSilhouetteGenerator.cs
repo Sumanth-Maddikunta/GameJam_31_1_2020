@@ -27,6 +27,7 @@ public class ItemSilhouetteGenerator : MonoBehaviour
 
         GenerateSilhouetteObjects();
 
+        GameManager.instance.OnRotationCompleted = OnObjectRotated;
         //MoveToPlacements();
     }
 
