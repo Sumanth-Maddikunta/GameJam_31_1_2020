@@ -1,0 +1,25 @@
+Camera Controller
+Sound Manager
+UIManager
+GameManager
+Animation Controller (Bots Controller)
+Placements Generation
+Level Saving
+Level Manager
+Prefabs Creation
+Dialogues Inspector and UI
+Art Integration
+Effects
+
+
+
+Panels (UI)
+Pause panel - sound on/off
+Menu panel
+Game Over panel
+Level Completed
+Game Completed
+Dialogues panel
+Credits
+
+ 
