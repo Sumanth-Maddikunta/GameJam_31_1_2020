@@ -13,6 +13,8 @@ public class ItemSilhouetteGenerator : MonoBehaviour
     int childCount = 0;
     int silCount = 0;
 
+    public bool onRotated;
+
     ObjectControl control;
     private void Start()
     {
@@ -61,6 +63,27 @@ public class ItemSilhouetteGenerator : MonoBehaviour
             else
             {
                 components[i].SetState(EItemState.FIXED);
+            }
+        }
+    }
+
+    private void Update()
+    {
+        if(onRotated)
+        {
+            onRotated = false;
+            OnObjectRotated();
+        }
+    }
+
+    public void OnObjectRotated()
+    {
+        for(int i = 0;i < components.Count;i++)
+        {
+            ItemComponent comp = components[i];
+            if(comp.state.Equals(EItemState.BROKEN))
+            {
+                comp.transform.rotation = comp.SnapComponent.transform.rotation;
             }
         }
     }

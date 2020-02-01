@@ -29,6 +29,11 @@ public class ObjectControl : MonoBehaviour
             placer.transform.parent = transform;
         }
 
+        foreach(GameObject GO in placmeents)
+        {
+            GO.transform.parent = null;
+        }
+
         //for (int i = 0; i < placmeents.Count; ++i)
         //{
         //    brokenObjs[i].transform.DOMove(placmeents[i].transform.position, 1);

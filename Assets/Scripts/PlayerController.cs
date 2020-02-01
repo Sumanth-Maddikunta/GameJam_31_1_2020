@@ -8,8 +8,6 @@ public class PlayerController : MonoBehaviour
     public ItemComponent currentHandling = null;
 
     public Material silhouetteMaterial;
-    public Material normalMaterial;
-
     public ObjectControl control;
     public ItemSilhouetteGenerator silhouetteGenerator;
     // Start is called before the first frame update

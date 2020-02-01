@@ -23,11 +23,12 @@ public class ItemComponent : MonoBehaviour
 
     ObjectControl control;
 
-
+    public Material defaultMaterial;
     private void Awake()
     {
         control = transform.GetComponentInParent<ObjectControl>();
         meshRenderer = GetComponent<MeshRenderer>();
+        defaultMaterial = meshRenderer.material;
     }
 
     private void Start()
@@ -40,7 +41,7 @@ public class ItemComponent : MonoBehaviour
         switch (state)
         {
             case EItemState.FIXED:
-                meshRenderer.material = PlayerController.instance.normalMaterial;
+                meshRenderer.material = defaultMaterial;
                 break;
 
             case EItemState.SILHOUETTE:
@@ -48,11 +49,11 @@ public class ItemComponent : MonoBehaviour
                 break;
 
             case EItemState.BROKEN:
-                meshRenderer.material = PlayerController.instance.normalMaterial;
+                meshRenderer.material = defaultMaterial;
                 break;
 
             case EItemState.PICKEDUP:
-                meshRenderer.material = PlayerController.instance.normalMaterial;
+                meshRenderer.material = defaultMaterial;
                 break;
         }
     }
@@ -98,7 +99,7 @@ public class ItemComponent : MonoBehaviour
                     if (Vector3.Distance(SnapComponent.transform.position, transform.position) < 0.2f)
                     {
                         transform.DOMove(SnapComponent.transform.position, 0.2f);
-                        transform.DORotate(SnapComponent.transform.rotation.eulerAngles, 2.0f);
+                        transform.DORotate(SnapComponent.transform.rotation.eulerAngles, 0.2f);
                         transform.parent = PlayerController.instance.control.transform;
                         SetState(EItemState.FIXED);
                         Destroy(SnapComponent.gameObject);
