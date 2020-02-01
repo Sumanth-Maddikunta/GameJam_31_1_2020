@@ -99,6 +99,7 @@ public class ItemComponent : MonoBehaviour
                     {
                         transform.DOMove(SnapComponent.transform.position, 0.2f);
                         transform.DORotate(SnapComponent.transform.rotation.eulerAngles, 2.0f);
+                        transform.parent = PlayerController.instance.control.transform;
                         SetState(EItemState.FIXED);
                         Destroy(SnapComponent.gameObject);
                         SnapComponent = null;

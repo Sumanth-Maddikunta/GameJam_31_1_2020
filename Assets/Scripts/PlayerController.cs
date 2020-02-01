@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public Material silhouetteMaterial;
     public Material normalMaterial;
 
+    public ObjectControl control;
+    public ItemSilhouetteGenerator silhouetteGenerator;
     // Start is called before the first frame update
     void Awake()
     {

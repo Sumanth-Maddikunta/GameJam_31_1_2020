@@ -427,6 +427,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1182206286}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1472666852 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4625168586003126010, guid: 6459fb6835bae2148bec830ec0a8792a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1182206286}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472666851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec9eceda174fe7f47986d849aa10548a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1472666854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,6 +484,8 @@ MonoBehaviour:
   currentHandling: {fileID: 0}
   silhouetteMaterial: {fileID: 2100000, guid: fc1cd29c873f6ee4f9c0fd31224064f8, type: 2}
   normalMaterial: {fileID: 2100000, guid: 9c83bca5bededa04db27c794b3ac066e, type: 2}
+  control: {fileID: 1472666852}
+  silhouetteGenerator: {fileID: 1472666854}
 --- !u!4 &1839262067
 Transform:
   m_ObjectHideFlags: 0
