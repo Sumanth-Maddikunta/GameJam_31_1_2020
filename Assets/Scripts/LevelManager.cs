@@ -48,6 +48,7 @@ public class LevelManager : MonoBehaviour
             questionButtons.Add(quesButton);
 
         }
+        GameManager.instance.patientHandler.patient.OnNewLevelStarted();
         isEnded = false;
     }
 

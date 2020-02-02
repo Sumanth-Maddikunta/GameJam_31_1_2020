@@ -7,6 +7,7 @@ public class PatientHandler : MonoBehaviour
 {
 
     public Transform objectsSpawnPlaceHolder;
+    public Patient patient;
 
     public List<GameObject> objectParts;
 
