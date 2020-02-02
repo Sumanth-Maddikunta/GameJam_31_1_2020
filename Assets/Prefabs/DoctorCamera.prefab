@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8087420080123886734}
   - component: {fileID: 8087420080123886733}
-  - component: {fileID: 8087420080123886732}
   m_Layer: 0
   m_Name: DoctorCamera
   m_TagString: Untagged
@@ -76,14 +75,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &8087420080123886732
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8087420080123886731}
-  m_Enabled: 1
 --- !u!1001 &1221632754002257384
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -151,6 +142,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3859526364373623052, guid: 793c3ea4a1e808a4bba1c34be8a9eb64,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e17910a0c43ea6d4d9bbddd404df679a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 793c3ea4a1e808a4bba1c34be8a9eb64, type: 3}
 --- !u!4 &1445576714034159108 stripped
