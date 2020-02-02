@@ -1420,8 +1420,9 @@ MonoBehaviour:
   audios: []
   clips:
   - {fileID: 8300000, guid: 6eeb53181bb3ddf4896cb741f46e8556, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 563de416016046e4f89bbf0b6e2b5945, type: 3}
+  - {fileID: 8300000, guid: 79bf5e9a2d5a3a749b8ba124efd5f5b6, type: 3}
+  - {fileID: 8300000, guid: aa431192e1747084b80cfdcc1f5800c9, type: 3}
 --- !u!1 &2145277935
 GameObject:
   m_ObjectHideFlags: 0
@@ -1611,15 +1612,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8832532180275549814, guid: 88521141090d59745b1cc93031c40ed6,
         type: 3}
-    - target: {fileID: 3446062185305697537, guid: 7e7b6ca0ce47da348a795b4f0e279dce,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3446062185305697538, guid: 7e7b6ca0ce47da348a795b4f0e279dce,
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 1.2998047
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446062185305697537, guid: 7e7b6ca0ce47da348a795b4f0e279dce,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3446062185797110436, guid: 7e7b6ca0ce47da348a795b4f0e279dce,
         type: 3}
