@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     public static PlayerController instance;
     public ItemComponent currentHandling = null;
 
+    public Animator animator;
+
     public Material silhouetteMaterial;
     public ObjectControl control;
     public ItemSilhouetteGenerator silhouetteGenerator;

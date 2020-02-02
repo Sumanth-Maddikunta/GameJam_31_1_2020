@@ -21,6 +21,9 @@ public class PatientHandler : MonoBehaviour
     public IEnumerator CreateLevelPartsCoroutine()
     {
         yield return new WaitForSeconds(2f);
+
+        PlayerController.instance.animator.Play("Spell");
+        //yield return new WaitForSeconds(1f);
         
         if (GameManager.instance.levelObjects != null)
         {
