@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public Button gamePlayResumeButton;
     public Button gamePlayExitButton;
     public Button nextLevelButton;
+    public Button creditBackButton;
     #endregion
 
 
@@ -38,8 +39,13 @@ public class GameManager : MonoBehaviour
     public Transform spawnPosition;
     public GameObject orthoCam;
     public GameObject persCam;
-    bool isOrtho;
 
+    public GameObject platformObject;
+    public GameObject happinessLevel;
+
+    bool isOrtho = false;
+
+    public bool isPatientTurn;
     #endregion
 
     #region
@@ -61,7 +67,7 @@ public class GameManager : MonoBehaviour
         DeleteLevelData();
         maxLevels = levelObjects.Count;
         GetCurrentLevel();
-        Debug.LogError("LEVEL : " + levelNo);
+        //Debug.LogError("LEVEL : " + levelNo);
             
         gameplayLeftButton.onClick.RemoveAllListeners();
         gameplayRightButton.onClick.RemoveAllListeners();
@@ -72,6 +78,7 @@ public class GameManager : MonoBehaviour
         gamePlayResumeButton.onClick.RemoveAllListeners();
         gamePlayExitButton.onClick.RemoveAllListeners();
         nextLevelButton.onClick.RemoveAllListeners();
+        creditBackButton.onClick.RemoveAllListeners();
 
         gameplayLeftButton.onClick.AddListener(RotateLeft);
         gameplayRightButton.onClick.AddListener(RotateRight);
@@ -82,6 +89,7 @@ public class GameManager : MonoBehaviour
         gamePlayResumeButton.onClick.AddListener(OnGameplayResumeClicked);
         gamePlayExitButton.onClick.AddListener(OnExitClicked);
         nextLevelButton.onClick.AddListener(LoadLevel);
+        creditBackButton.onClick.AddListener(()=> { ActivatePanel(EPanel.MenuPanel); });
 
         DisableAllPanels();
         ActivatePanel(EPanel.MenuPanel);
@@ -118,15 +126,21 @@ public class GameManager : MonoBehaviour
     public void OnDialoguesCompleted()
     {
         SwitchCamera();
+        happinessLevel.GetComponent<Image>().fillAmount = 0;
         ActivatePanel(EPanel.GameplayPanel);
         SetCurrentGameObject(levelNo, true);
+
+    }
+
+    public void ShowObjectsAnimation()
+    {
+
     }
 
     public void SwitchCamera()
-    {
-        return;
+    {       
 
-        if(isOrtho)
+        if(!isOrtho)
         {
             orthoCam.SetActive(false);
             persCam.SetActive(true);
@@ -189,6 +203,24 @@ public class GameManager : MonoBehaviour
                     // OnRotationCompleted();
                     PlayerController.instance.silhouetteGenerator.OnObjectRotated();
                 }
+            });
+        }
+    }
+
+
+    Tween camRotTween = null ;
+    public void RotatePerspective()
+    {
+        if (camRotTween == null)
+        {
+            float currCamRot = persCam.transform.rotation.eulerAngles.y;
+            currCamRot += 180f;
+
+            Quaternion quaternion = Quaternion.Euler(0, currCamRot, 0);
+            camRotTween = persCam.transform.DORotateQuaternion(quaternion, 1.5f).SetEase(Ease.InOutSine).OnComplete(() =>
+            {
+
+                camRotTween = null;
             });
         }
     }
