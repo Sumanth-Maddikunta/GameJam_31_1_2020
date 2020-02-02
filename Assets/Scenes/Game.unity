@@ -1714,6 +1714,74 @@ PrefabInstance:
       propertyPath: patientHandler
       value: 
       objectReference: {fileID: 533401833}
+    - target: {fileID: 3446062185305697541, guid: 7e7b6ca0ce47da348a795b4f0e279dce,
+        type: 3}
+      propertyPath: levels.Array.data[2].questions.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446062185305697541, guid: 7e7b6ca0ce47da348a795b4f0e279dce,
+        type: 3}
+      propertyPath: levels.Array.data[2].answers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446062185305697541, guid: 7e7b6ca0ce47da348a795b4f0e279dce,
+        type: 3}
+      propertyPath: levels.Array.data[2].questions.Array.data[2]
+      value: Very well, Its quite unfortunate to hear of this i but know what i can
+        do to help you. I will conjure the one thing that best illustrates your worry
+        and i shall fix the shattered bit and piece left of them.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446062185305697541, guid: 7e7b6ca0ce47da348a795b4f0e279dce,
+        type: 3}
+      propertyPath: levels.Array.data[2].questions.Array.data[3]
+      value: I know that me fixing this could give you the impression that your pain
+        and desire for your beloved would leave, but its important to know that it
+        will simply calm it.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446062185305697541, guid: 7e7b6ca0ce47da348a795b4f0e279dce,
+        type: 3}
+      propertyPath: levels.Array.data[2].questions.Array.data[4]
+      value: i am an alchemist sire...
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446062185305697541, guid: 7e7b6ca0ce47da348a795b4f0e279dce,
+        type: 3}
+      propertyPath: levels.Array.data[2].questions.Array.data[0]
+      value: ' Good dawning to thee, friend'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446062185305697541, guid: 7e7b6ca0ce47da348a795b4f0e279dce,
+        type: 3}
+      propertyPath: levels.Array.data[2].answers.Array.data[2]
+      value: Th-This perfume! I remember this, it was her most treasured aroma. She
+        absolutely adored the flowery fragrance!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446062185305697541, guid: 7e7b6ca0ce47da348a795b4f0e279dce,
+        type: 3}
+      propertyPath: levels.Array.data[2].answers.Array.data[3]
+      value: ' I thank you, you odd witch.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446062185305697541, guid: 7e7b6ca0ce47da348a795b4f0e279dce,
+        type: 3}
+      propertyPath: levels.Array.data[2].answers.Array.data[4]
+      value: :)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446062185305697541, guid: 7e7b6ca0ce47da348a795b4f0e279dce,
+        type: 3}
+      propertyPath: levels.Array.data[2].answers.Array.data[0]
+      value: 'Oh! Piss off you sard! I didnt come here for pleasantries!Im here because
+        im cronically unable to get back onto my feet! '
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446062185305697541, guid: 7e7b6ca0ce47da348a795b4f0e279dce,
+        type: 3}
+      propertyPath: levels.Array.data[2].questions.Array.data[1]
+      value: "my\u2026 what a enthusiastically eager youth, what is the problem that
+        bothers you?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446062185305697541, guid: 7e7b6ca0ce47da348a795b4f0e279dce,
+        type: 3}
+      propertyPath: levels.Array.data[2].answers.Array.data[1]
+      value: ' Its been 3 years since my beloved gave up the ghost.  I miss her dearly,
+        help me settle  the storm that brews inside me. '
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e7b6ca0ce47da348a795b4f0e279dce, type: 3}
 --- !u!4 &5006512735313839657
