@@ -6,6 +6,8 @@ TagManager:
   tags:
   - shattered_book
   - shattered_parrot
+  - shattered_perfume
+  - shattered_watch
   layers:
   - Default
   - TransparentFX
