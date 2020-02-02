@@ -211,18 +211,20 @@ public class GameManager : MonoBehaviour
 
 
     Tween camRotTween = null ;
+    bool isRot = false;
     public void RotatePerspective()
     {
-        if (camRotTween == null)
+        if (!isRot)
         {
+
+            isRot = true;
             float currCamRot = persCam.transform.rotation.eulerAngles.y;
             currCamRot += 180f;
 
             Quaternion quaternion = Quaternion.Euler(0, currCamRot, 0);
-            camRotTween = persCam.transform.DORotateQuaternion(quaternion, 1.5f).SetEase(Ease.InOutSine).OnComplete(() =>
+            camRotTween = persCam.transform.DORotateQuaternion(quaternion, 1.1f).SetEase(Ease.InOutSine).OnComplete(() =>
             {
-
-                camRotTween = null;
+                isRot = false;
             });
         }
     }

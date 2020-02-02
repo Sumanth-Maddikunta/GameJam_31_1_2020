@@ -42,6 +42,7 @@ public class LevelManager : MonoBehaviour
             questionButtons.Add(quesButton);
 
         }
+        isEnded = false;
         answerText.gameObject.SetActive(false);
     }
     
@@ -56,22 +57,28 @@ public class LevelManager : MonoBehaviour
         answerText.gameObject.SetActive(true);
     }
 
-
+    bool isEnded = false;
     public void OnAnswerclicked()
     {
-        GameManager.instance.RotatePerspective();
-        answerText.gameObject.SetActive(false);
-        QuestionPanel.SetActive(true);
-        if(QuestionPanel.transform.childCount==0)
+
+        if (!isEnded)
+        {
+            GameManager.instance.RotatePerspective();
+            answerText.gameObject.SetActive(false);
+
+            QuestionPanel.SetActive(true);
+        }
+        if (QuestionPanel.transform.childCount == 0 && !isEnded)
         {
             //answerText.text = "start puzzle";
             answerText.gameObject.SetActive(true);
             answerText.text = "I've something for you which might help you to get better, but i need to fix it first";
             //GameManager.instance.OnDialoguesCompleted();
             GameManager.instance.patientHandler.CreateLevelParts();
-
+            isEnded = true;
             questionButtons.Clear();
         }
+       
 
     }
 }
