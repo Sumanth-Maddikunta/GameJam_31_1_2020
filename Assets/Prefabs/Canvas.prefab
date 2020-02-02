@@ -1338,23 +1338,46 @@ MonoBehaviour:
     - Hmmm, what a  lovely little birdie.
     - I hope this works
   - questions:
-    - L3
-    - 123123?
+    - ' Good dawning to thee, friend'
+    - "my\u2026 what a enthusiastically eager youth, what is the problem that bothers
+      you?"
+    - Very well, Its quite unfortunate to hear of this i but know what i can do to
+      help you. I will conjure the one thing that best illustrates your worry and
+      i shall fix the shattered bit and piece left of them.
+    - I know that me fixing this could give you the impression that your pain and
+      desire for your beloved would leave, but its important to know that it will
+      simply calm it.
+    - i am an alchemist sire...
     answers:
-    - asds
-    - 23444f..
+    - 'Oh! Piss off you sard! I didnt come here for pleasantries!Im here because im
+      cronically unable to get back onto my feet! '
+    - ' Its been 3 years since my beloved gave up the ghost.  I miss her dearly, help
+      me settle  the storm that brews inside me. '
+    - Th-This perfume! I remember this, it was her most treasured aroma. She absolutely
+      adored the flowery fragrance!
+    - ' I thank you, you odd witch.'
+    - :)
   - questions:
-    - L4
-    - 123123?
+    - 'Good day, young chap! What brings you to my humble abode? '
+    - what seems to be your gordian knot?
+    - "ah im sure i can help\u2026 a watch i see\u2026."
+    - ' i could fix it for you, but you should perceive this as the first step into
+      fixing the distance among you two. '
     answers:
-    - asds
-    - 23444f..
+    - I need your help sir alchemist! You have to soothe the ache that builds in my
+      heart! Its weighing down and i cant happen to know what to do of it!
+    - I miss my the times i spent with my grandfather! He is of old age and can no
+      longer move, me and him being close, we would go spending every moment our our
+      time togeather. But now, as i have my education to cater to and my grandfather
+      grows weaker, i feel like we are slowly drifting further apart
+    - " A watch\u2026 Oh! That watch! I recognise it! It the one which grandfather
+      carries everywhere\u2026"
+    - Thank you...A good time of day to you, sir
   - questions:
-    - L5
-    - 123123?
+    - We used this cube for testing purposes and we enjoyed it so much that we chose
+      not to remove it from the gameplay
     answers:
-    - asds
-    - 23444f..
+    - 'cool man '
 --- !u!1 &3446062185797110435
 GameObject:
   m_ObjectHideFlags: 0
