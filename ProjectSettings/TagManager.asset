@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - shattered_book
+  - shattered_parrot
   layers:
   - Default
   - TransparentFX

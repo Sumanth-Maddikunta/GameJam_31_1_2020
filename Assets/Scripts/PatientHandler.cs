@@ -20,6 +20,7 @@ public class PatientHandler : MonoBehaviour
     public IEnumerator CreateLevelPartsCoroutine()
     {
         yield return new WaitForSeconds(2f);
+        Vector3 tempScale = Vector3.one;
         if (GameManager.instance.levelObjects != null)
         {
             ObjectControl temp = GameManager.instance.levelObjects[GameManager.instance.levelNo - 1].GetComponent<ObjectControl>();
@@ -28,12 +29,23 @@ public class PatientHandler : MonoBehaviour
                 for (int i = 0; i < temp.brokenObjs.Count; i++)
                 {
                     GameObject part = Instantiate(temp.brokenObjs[i]);
-                    part.transform.localScale = Vector3.one * 0.5f;
+                    switch (temp.brokenObjs[i].transform.parent.tag)
+                    {
+
+                       case "shattered_book":
+                            tempScale *= 0.01f;
+                            break;
+                        case "shattered_parrot":
+                            tempScale *= 0.5f;
+                            break;
+
+                    }
+                    part.transform.localScale = tempScale ;
                     float x = Random.Range(objectsSpawnPlaceHolder.position.x - xOffset, objectsSpawnPlaceHolder.position.x + xOffset);
                     float y = Random.Range(objectsSpawnPlaceHolder.position.y, objectsSpawnPlaceHolder.position.y + yOffset);
                     part.transform.position = transform.position;
                     Vector3 tempPos = part.transform.position;
-                    tempPos.z += 0.5f;
+                    tempPos.z += 0.3f;
                     part.transform.position = tempPos;
                     part.transform.DOMove(new Vector3(x, y, part.transform.position.z - 1.5f), 0.3f);
                     objectParts.Add(part);
@@ -61,12 +73,13 @@ public class PatientHandler : MonoBehaviour
     {
         if(objectParts.Count > 0)
         {
+            
             for( int i=0;i<objectParts.Count;i++)
             {
                 GameObject temp = objectParts[i];
-                objectParts.RemoveAt(i);
                 Destroy(temp);
             }
+            objectParts.Clear();
         }
     }
 }
