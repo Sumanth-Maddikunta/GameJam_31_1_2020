@@ -82,16 +82,16 @@ public class GameManager : MonoBehaviour
         nextLevelButton.onClick.RemoveAllListeners();
         creditBackButton.onClick.RemoveAllListeners();
 
-        gameplayLeftButton.onClick.AddListener(RotateLeft);
-        gameplayRightButton.onClick.AddListener(RotateRight);
-        menuPlayButton.onClick.AddListener(OnMenuPlayClicked);
-        menuCreditsButton.onClick.AddListener(OnMenuCreditsClicked);
-        menuExitButton.onClick.AddListener(OnExitClicked);
-        gameplayPauseButton.onClick.AddListener(OnGamePlayPauseClicked);
-        gamePlayResumeButton.onClick.AddListener(OnGameplayResumeClicked);
-        gamePlayExitButton.onClick.AddListener(OnExitClicked);
-        nextLevelButton.onClick.AddListener(LoadLevel);
-        creditBackButton.onClick.AddListener(()=> { ActivatePanel(EPanel.MenuPanel); });
+        gameplayLeftButton.onClick.AddListener(() => { SoundManager.instance.PlayClip(EAudioClip.MENU_SFX, .5f); RotateLeft(); });
+        gameplayRightButton.onClick.AddListener(() => { SoundManager.instance.PlayClip(EAudioClip.MENU_SFX, .5f); RotateRight(); });
+        menuPlayButton.onClick.AddListener(() => { SoundManager.instance.PlayClip(EAudioClip.MENU_SFX, .5f); OnMenuPlayClicked(); });
+        menuCreditsButton.onClick.AddListener(() => { SoundManager.instance.PlayClip(EAudioClip.MENU_SFX, .5f); OnMenuCreditsClicked(); });
+        menuExitButton.onClick.AddListener(() => { SoundManager.instance.PlayClip(EAudioClip.MENU_SFX, .5f); OnExitClicked(); });
+        gameplayPauseButton.onClick.AddListener(() => { SoundManager.instance.PlayClip(EAudioClip.MENU_SFX, .5f); OnGamePlayPauseClicked(); });
+        gamePlayResumeButton.onClick.AddListener(() => { SoundManager.instance.PlayClip(EAudioClip.MENU_SFX, .5f); OnGameplayResumeClicked(); });
+        gamePlayExitButton.onClick.AddListener(() => { SoundManager.instance.PlayClip(EAudioClip.MENU_SFX, .5f); OnExitClicked(); });
+        nextLevelButton.onClick.AddListener(() => { SoundManager.instance.PlayClip(EAudioClip.MENU_SFX, .5f); LoadLevel(); });
+        creditBackButton.onClick.AddListener(()=> { SoundManager.instance.PlayClip(EAudioClip.MENU_SFX, .5f); ActivatePanel(EPanel.MenuPanel); });
 
         DisableAllPanels();
         ActivatePanel(EPanel.MenuPanel);

@@ -112,7 +112,7 @@ public class ItemComponent : MonoBehaviour
                         PlayerController.instance.silhouetteGenerator.silCount++;
                         float fill = (float)PlayerController.instance.silhouetteGenerator.silCount / (float)PlayerController.instance.silhouetteGenerator.totalBrokenCount;
                         GameManager.instance.UpdateFill(fill);
-
+                        SoundManager.instance.PlayClip(EAudioClip.SUCCESS_SFX,1);
                         if(PlayerController.instance.silhouetteGenerator.silCount == PlayerController.instance.silhouetteGenerator.totalBrokenCount)
                         {
                             GameManager.instance.OnLevelCompleted();
@@ -135,6 +135,7 @@ public class ItemComponent : MonoBehaviour
             if (this.gameObject == control.brokenObjs[i])
             {
                 transform.DOMove(control.placmeents[i].transform.position, 0.2f).SetEase(Ease.OutBack);
+                SoundManager.instance.PlayClip(EAudioClip.FAILURE_SFX,.25f);
             }
         }
 

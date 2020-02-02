@@ -31,7 +31,7 @@ public class SoundManager : MonoBehaviour
     private void Start()
     {
         //audioSource = GetComponent<AudioSource>();
-        PlayClip(EAudioClip.BACKGROUND_MUSIC,true,true);
+        PlayClip(EAudioClip.BACKGROUND_MUSIC,1f,true,true);
     }
 
     public void PlayAudioClip(string name)
@@ -48,7 +48,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void PlayClip(EAudioClip clip, bool loop = false, bool dontDestroy = false,float destroyAfter = 0)
+    public void PlayClip(EAudioClip clip,float volume, bool loop = false, bool dontDestroy = false)
     {
         if(clips[(int)clip] == null)
         {
@@ -58,11 +58,21 @@ public class SoundManager : MonoBehaviour
         AudioSource audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.loop = loop;
         audioSource.clip = clips[(int)clip];
+        audioSource.volume = volume;
         audioSource.Play();
         if(!dontDestroy)
         {
-            Destroy(audioSource, destroyAfter);
+            float destroyAfter = clips[(int)clip].length;
+            StartCoroutine(RemoveClip(audioSource, destroyAfter));
         }
+    }
+
+    IEnumerator RemoveClip(AudioSource audioSource, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        audioSource.Stop();
+        Destroy(audioSource);
     }
 }
 
@@ -72,6 +82,7 @@ public enum EAudioClip
     BACKGROUND_MUSIC,
     SUCCESS_SFX,
     FAILURE_SFX,
+    MENU_SFX
 }
 
 [System.Serializable]
