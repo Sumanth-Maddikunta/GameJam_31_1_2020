@@ -1597,6 +1597,16 @@ PrefabInstance:
       propertyPath: patientHandler
       value: 
       objectReference: {fileID: 533401833}
+    - target: {fileID: 2079949288596184882, guid: 7e7b6ca0ce47da348a795b4f0e279dce,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 477495687, guid: 7e7b6ca0ce47da348a795b4f0e279dce, type: 3}
+      propertyPath: m_Text
+      value: "Asra  - art direction, narration & concept art\n\n<b>Artists  &  Designers</b>\nSimon
+        \nGirish Jaiswal \nSaksham Sahu\nShambAditya Ghosh\n\n13588 - Mentor\n\n"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e7b6ca0ce47da348a795b4f0e279dce, type: 3}
 --- !u!1 &7788659287928139500
