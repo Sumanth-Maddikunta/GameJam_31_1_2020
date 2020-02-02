@@ -1601,7 +1601,7 @@ PrefabInstance:
         type: 3}
       propertyPath: levelObjects.Array.data[0]
       value: 
-      objectReference: {fileID: 4932111314402423567, guid: 59107923a1215ea4f818190236fa93e0,
+      objectReference: {fileID: 704587609354347709, guid: 1936aed1fd742414dbf5acd216b41f9a,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e7b6ca0ce47da348a795b4f0e279dce, type: 3}
@@ -1679,110 +1679,3 @@ Transform:
   m_Father: {fileID: 1095796845}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 22, y: 0, z: 0}
---- !u!1001 &7913611906878616349
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2230162591474026261, guid: fd4f97be473f08647a2dd3bae909f2bf,
-        type: 3}
-      propertyPath: m_Name
-      value: Perfume_Blue_Breakable
-      objectReference: {fileID: 0}
-    - target: {fileID: 2929724423755429126, guid: fd4f97be473f08647a2dd3bae909f2bf,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 2929724423755429126, guid: fd4f97be473f08647a2dd3bae909f2bf,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2929724423755429126, guid: fd4f97be473f08647a2dd3bae909f2bf,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2929724423755429126, guid: fd4f97be473f08647a2dd3bae909f2bf,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2929724423755429126, guid: fd4f97be473f08647a2dd3bae909f2bf,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2929724423755429126, guid: fd4f97be473f08647a2dd3bae909f2bf,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2929724423755429126, guid: fd4f97be473f08647a2dd3bae909f2bf,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2929724423755429126, guid: fd4f97be473f08647a2dd3bae909f2bf,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2929724423755429126, guid: fd4f97be473f08647a2dd3bae909f2bf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2929724423755429126, guid: fd4f97be473f08647a2dd3bae909f2bf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2929724423755429126, guid: fd4f97be473f08647a2dd3bae909f2bf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: fd4f97be473f08647a2dd3bae909f2bf, type: 3}
---- !u!1 &8296172668544201736 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2230162591474026261, guid: fd4f97be473f08647a2dd3bae909f2bf,
-    type: 3}
-  m_PrefabInstance: {fileID: 7913611906878616349}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8296172668544201737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8296172668544201736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8ce953e31e6dde44a923b8fa258df99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  components: []
-  silCount: 0
-  totalBrokenCount: 0
-  onRotated: 0
---- !u!114 &8296172668544201738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8296172668544201736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec9eceda174fe7f47986d849aa10548a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  brokenObjs: []
-  placmeents: []
-  startZPos: []
-  oldPositions: []
