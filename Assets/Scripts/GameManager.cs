@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     #region UI
-    [EnumNamedArray(typeof(EPanel))]
+    //[EnumNamedArray(typeof(EPanel))]
     public List<GameObject> panels;
     EPanel currentActivePanel = EPanel.None;
 
@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     public Button gamePlayExitButton;
     public Button nextLevelButton;
     public Button creditBackButton;
+    public Button gameOverRestartButton;
+    public Button gameOverExitButton;
     #endregion
 
 
@@ -48,6 +50,10 @@ public class GameManager : MonoBehaviour
     bool isOrtho = false;
 
     public bool isPatientTurn;
+
+    public LevelManager levelManager;
+
+
     #endregion
 
     #region
@@ -66,10 +72,11 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        DeleteLevelData();
+
         maxLevels = levelObjects.Count;
         GetCurrentLevel();
-        //Debug.LogError("LEVEL : " + levelNo);
+
+        Debug.LogError("LEVEL : " + levelNo);
             
         gameplayLeftButton.onClick.RemoveAllListeners();
         gameplayRightButton.onClick.RemoveAllListeners();
@@ -81,6 +88,9 @@ public class GameManager : MonoBehaviour
         gamePlayExitButton.onClick.RemoveAllListeners();
         nextLevelButton.onClick.RemoveAllListeners();
         creditBackButton.onClick.RemoveAllListeners();
+        gameOverExitButton.onClick.RemoveAllListeners();
+        gameOverRestartButton.onClick.RemoveAllListeners();
+
 
         gameplayLeftButton.onClick.AddListener(() => { SoundManager.instance.PlayClip(EAudioClip.MENU_SFX, .5f); RotateLeft(); });
         gameplayRightButton.onClick.AddListener(() => { SoundManager.instance.PlayClip(EAudioClip.MENU_SFX, .5f); RotateRight(); });
@@ -92,9 +102,25 @@ public class GameManager : MonoBehaviour
         gamePlayExitButton.onClick.AddListener(() => { SoundManager.instance.PlayClip(EAudioClip.MENU_SFX, .5f); OnExitClicked(); });
         nextLevelButton.onClick.AddListener(() => { SoundManager.instance.PlayClip(EAudioClip.MENU_SFX, .5f); LoadLevel(); });
         creditBackButton.onClick.AddListener(()=> { SoundManager.instance.PlayClip(EAudioClip.MENU_SFX, .5f); ActivatePanel(EPanel.MenuPanel); });
+        gameOverRestartButton.onClick.AddListener(() => 
+        { SoundManager.instance.PlayClip(EAudioClip.MENU_SFX, .5f);
+            DeleteLevelData();
+            GetCurrentLevel();
+            SaveCurrentLevel();
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0); 
+        });
+        gameOverExitButton.onClick.AddListener(() => { SoundManager.instance.PlayClip(EAudioClip.MENU_SFX, .5f); OnExitClicked(); });
 
         DisableAllPanels();
-        ActivatePanel(EPanel.MenuPanel);
+        
+        if(levelNo > maxLevels)
+        {
+            ActivatePanel(EPanel.GameCompletedPanel);
+        }
+        else
+        {
+            ActivatePanel(EPanel.MenuPanel);
+        }
     }
 
 
@@ -123,6 +149,7 @@ public class GameManager : MonoBehaviour
     {
         SwitchCamera();
         ActivatePanel(EPanel.DialoguePanel);
+        levelManager.LoadLevel();
     }
 
     public void OnDialoguesCompleted()
@@ -133,6 +160,8 @@ public class GameManager : MonoBehaviour
         SetCurrentGameObject(levelNo, true);
 
     }
+
+    
 
     public void ShowObjectsAnimation()
     {
@@ -264,7 +293,7 @@ public class GameManager : MonoBehaviour
         levelNo++;
         if(levelNo > maxLevels)
         {
-            ActivatePanel(EPanel.GameOverPanel);
+            ActivatePanel(EPanel.GameCompletedPanel);
         }
 
         SaveCurrentLevel();
@@ -296,6 +325,11 @@ public class GameManager : MonoBehaviour
     public void SaveCurrentLevel()
     {
         PlayerPrefs.SetInt("Current_Level", levelNo);
+    }
+
+    private void OnDestroy()
+    {
+        SaveCurrentLevel();
     }
 
     public void DeleteLevelData()

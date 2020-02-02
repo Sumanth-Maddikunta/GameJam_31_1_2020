@@ -32,9 +32,15 @@ public class LevelManager : MonoBehaviour
 
     private void OnEnable()
     {
-        for(int i=0;i<levels[GameManager.instance.levelNo - 1].questions.Count;++i)
+        
+    }
+    
+    public void LoadLevel()
+    {
+        answerText.gameObject.SetActive(false);
+        for (int i = 0; i < levels[GameManager.instance.levelNo - 1].questions.Count; ++i)
         {
-            GameObject quesButton =  Instantiate(button, QuestionPanel.transform) as GameObject;
+            GameObject quesButton = Instantiate(button, QuestionPanel.transform) as GameObject;
             quesButton.transform.GetChild(0).GetComponent<Text>().text = levels[GameManager.instance.levelNo - 1].questions[i];
             QuestionNumber questionNumberScript = quesButton.GetComponent<QuestionNumber>();
             questionNumberScript.questionNo = i;
@@ -43,9 +49,8 @@ public class LevelManager : MonoBehaviour
 
         }
         isEnded = false;
-        answerText.gameObject.SetActive(false);
     }
-    
+
     public void QuestionNo(int no)
     {
         //print(no);

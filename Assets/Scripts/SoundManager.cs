@@ -10,7 +10,7 @@ public class SoundManager : MonoBehaviour
     AudioSource audioSource;
     public List<AudioClass> audios = new List<AudioClass>();
 
-    [EnumNamedArray(typeof(EAudioClip))]
+    //[EnumNamedArray(typeof(EAudioClip))]
     public List<AudioClip> clips = new List<AudioClip>();
 
     private void Awake()
