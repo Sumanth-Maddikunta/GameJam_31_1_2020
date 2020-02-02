@@ -7,8 +7,6 @@ public class ObjectControl : MonoBehaviour
 {
 
     public List<GameObject> brokenObjs = new List<GameObject>();
-
-    
     public List<GameObject> placmeents = new List<GameObject>();
 
     [HideInInspector]public List<float> startZPos = new List<float>();
@@ -38,6 +36,7 @@ public class ObjectControl : MonoBehaviour
             startZPos.Add(obj.transform.localPosition.z);
             GameObject placer = new GameObject();
             placer.transform.position = obj.transform.position;
+            Debug.LogWarning("Position " + placer.transform.position);
             placer.transform.rotation = obj.transform.rotation;
             oldPositions.Add(placer);
             placer.transform.parent = transform;

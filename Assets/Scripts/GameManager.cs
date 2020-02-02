@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
     public GameObject platformObject;
     public GameObject happinessLevel;
 
+    public PatientHandler patientHandler;
+
     bool isOrtho = false;
 
     public bool isPatientTurn;

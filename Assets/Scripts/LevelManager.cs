@@ -34,7 +34,7 @@ public class LevelManager : MonoBehaviour
     {
         for(int i=0;i<levels[GameManager.instance.levelNo - 1].questions.Count;++i)
         {
-            GameObject quesButton=  Instantiate(button, QuestionPanel.transform) as GameObject;
+            GameObject quesButton =  Instantiate(button, QuestionPanel.transform) as GameObject;
             quesButton.transform.GetChild(0).GetComponent<Text>().text = levels[GameManager.instance.levelNo - 1].questions[i];
             QuestionNumber questionNumberScript = quesButton.GetComponent<QuestionNumber>();
             questionNumberScript.questionNo = i;
@@ -65,9 +65,11 @@ public class LevelManager : MonoBehaviour
         if(QuestionPanel.transform.childCount==0)
         {
             //answerText.text = "start puzzle";
-            //answerText.gameObject.SetActive(true);
+            answerText.gameObject.SetActive(true);
             answerText.text = "I've something for you which might help you to get better, but i need to fix it first";
-            GameManager.instance.OnDialoguesCompleted();
+            //GameManager.instance.OnDialoguesCompleted();
+            GameManager.instance.patientHandler.CreateLevelParts();
+
             questionButtons.Clear();
         }
 
