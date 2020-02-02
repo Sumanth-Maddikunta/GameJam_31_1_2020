@@ -211,7 +211,7 @@ public class GameManager : MonoBehaviour
 
 
     Tween camRotTween = null ;
-    bool isRot = false;
+    public bool isRot = false;
     public void RotatePerspective()
     {
         if (!isRot)

@@ -49,36 +49,42 @@ public class LevelManager : MonoBehaviour
     public void QuestionNo(int no)
     {
         //print(no);
-        GameManager.instance.RotatePerspective();
-       
-        Destroy(questionButtons[no]);
-        QuestionPanel.SetActive(false);
-        answerText.text =  levels[GameManager.instance.levelNo - 1].answers[no];
-        answerText.gameObject.SetActive(true);
+
+        if(GameManager.instance.isRot == false)
+        {
+            GameManager.instance.RotatePerspective();
+
+            Destroy(questionButtons[no]);
+            QuestionPanel.SetActive(false);
+            answerText.text = levels[GameManager.instance.levelNo - 1].answers[no];
+            answerText.gameObject.SetActive(true);
+        }
+        
     }
 
     bool isEnded = false;
     public void OnAnswerclicked()
     {
-
-        if (!isEnded)
+        if(GameManager.instance.isRot == false)
         {
-            GameManager.instance.RotatePerspective();
-            answerText.gameObject.SetActive(false);
+            if (!isEnded)
+            {
+                GameManager.instance.RotatePerspective();
+                answerText.gameObject.SetActive(false);
 
-            QuestionPanel.SetActive(true);
+                QuestionPanel.SetActive(true);
+            }
+            if (QuestionPanel.transform.childCount == 0 && !isEnded)
+            {
+                //answerText.text = "start puzzle";
+                answerText.gameObject.SetActive(true);
+                answerText.text = "I've something for you which might help you to get better, but i need to fix it first";
+                //GameManager.instance.OnDialoguesCompleted();
+                GameManager.instance.patientHandler.CreateLevelParts();
+                isEnded = true;
+                questionButtons.Clear();
+            }
         }
-        if (QuestionPanel.transform.childCount == 0 && !isEnded)
-        {
-            //answerText.text = "start puzzle";
-            answerText.gameObject.SetActive(true);
-            answerText.text = "I've something for you which might help you to get better, but i need to fix it first";
-            //GameManager.instance.OnDialoguesCompleted();
-            GameManager.instance.patientHandler.CreateLevelParts();
-            isEnded = true;
-            questionButtons.Clear();
-        }
-       
 
     }
 }

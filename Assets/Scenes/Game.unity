@@ -1600,38 +1600,6 @@ PrefabInstance:
       propertyPath: patientHandler
       value: 
       objectReference: {fileID: 533401833}
-    - target: {fileID: 3610086810799417860, guid: 7e7b6ca0ce47da348a795b4f0e279dce,
-        type: 3}
-      propertyPath: levelObjects.Array.data[1]
-      value: 
-      objectReference: {fileID: 1356574410205319549, guid: d649829c455be0949a2a63ec409abb04,
-        type: 3}
-    - target: {fileID: 3610086810799417860, guid: 7e7b6ca0ce47da348a795b4f0e279dce,
-        type: 3}
-      propertyPath: levelObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 8832532180275549814, guid: 88521141090d59745b1cc93031c40ed6,
-        type: 3}
-    - target: {fileID: 3446062185305697538, guid: 7e7b6ca0ce47da348a795b4f0e279dce,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 1.2998047
-      objectReference: {fileID: 0}
-    - target: {fileID: 3446062185305697537, guid: 7e7b6ca0ce47da348a795b4f0e279dce,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3446062185797110436, guid: 7e7b6ca0ce47da348a795b4f0e279dce,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 5127895363500663057, guid: 7e7b6ca0ce47da348a795b4f0e279dce,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 23.649902
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e7b6ca0ce47da348a795b4f0e279dce, type: 3}
 --- !u!1 &7788659287928139500

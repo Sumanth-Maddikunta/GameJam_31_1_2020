@@ -63,10 +63,10 @@ public class PatientHandler : MonoBehaviour
             objectParts[i].transform.DOMove(GameManager.instance.platformObject.transform.position, 0.5f);
             yield return new WaitForSeconds(0.1f);
         }
-        GameManager.instance.OnDialoguesCompleted();
 
         yield return new WaitForSeconds(0.5f);
         DestroyObjects();
+        GameManager.instance.OnDialoguesCompleted();
     }
 
     public void DestroyObjects()
