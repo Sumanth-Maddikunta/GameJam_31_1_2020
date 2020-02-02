@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
         maxLevels = levelObjects.Count;
         GetCurrentLevel();
 
-        Debug.LogError("LEVEL : " + levelNo);
+        Debug.Log("LEVEL : " + levelNo);
             
         gameplayLeftButton.onClick.RemoveAllListeners();
         gameplayRightButton.onClick.RemoveAllListeners();
