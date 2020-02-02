@@ -175,7 +175,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dff2b12f52b5c8f468c6214150cc8c94, type: 2}
+  - {fileID: 2100000, guid: 6c8a43d901e82cb45bc1c218f1709b6f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -745,7 +745,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6c8a43d901e82cb45bc1c218f1709b6f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1342,7 +1342,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6c8a43d901e82cb45bc1c218f1709b6f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1597,12 +1597,6 @@ PrefabInstance:
       propertyPath: patientHandler
       value: 
       objectReference: {fileID: 533401833}
-    - target: {fileID: 3610086810799417860, guid: 7e7b6ca0ce47da348a795b4f0e279dce,
-        type: 3}
-      propertyPath: levelObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 704587609354347709, guid: 1936aed1fd742414dbf5acd216b41f9a,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e7b6ca0ce47da348a795b4f0e279dce, type: 3}
 --- !u!1 &7788659287928139500
