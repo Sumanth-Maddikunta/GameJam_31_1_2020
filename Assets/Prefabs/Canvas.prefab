@@ -1299,17 +1299,44 @@ MonoBehaviour:
   QuestionPanel: {fileID: 3446062185797110435}
   levels:
   - questions:
-    - YOU BOI?
-    - YOU BOI?
+    - 'Oh my! What an unexpected surprise to have you here lord __. how could i possibly
+      be of service to you this fine evening? '
+    - Please, Tell me what ails you and I shall be eager to help
+    - Then what could possibly be the problem then.
+    - "It\u2019s sad to hear this but know what i can do to help you. I will conjure
+      the one thing that best exemplifies your conundrum"
+    - Hmmm a book i... see
     answers:
-    - IDK
-    - IDK
+    - 'goodness, don''t even get me started young lad, my days are filled with gloom
+      and peril. I have only but one reason to be here, to wish my morose disposition
+      a kind farewell. '
+    - It all started when my scholarly scripts finally started garnering the attention
+      of fellow scholars. You see, It was always my desire to be a renowned scholar,
+      and by god, i have finally achieved this stupendous task.
+    - My success was a double edged sword sire, I had indeed achieved it, but a consequence
+      of it was that my presence was needed in places away from the one who helped
+      me attain hence success. My teacher! Without his guidance and help, I feel lost
+      and hopeless, I don't know what to do!
+    - A book?....
+    - 'This! this books! It was given to me as a present from my guide!  '
   - questions:
-    - L2
-    - 123123?
+    - How do you fare, young fella?
+    - Of course it is! Think of me as a doctor who helps with diseases of the heart.
+      Now, get the word on lad, speak from your heart.
+    - Its quite unfortunate to hear of this but know what i can do to help you. I
+      will conjure the one thing that best illustrates your worry
+    - GOOD LORD! THIS BIRD IT--WE-- my-MY FRIEND AND I HAD CRAFTED IT IN YOUR YOUNG
+      DAYS ...oh! oh, what times those were.
     answers:
-    - asds
-    - 23444f..
+    - I heard you can make me feel better, is...is that true?
+    - You see, my mind has been dancing upon a friend of mine, My friend, the one
+      i feel true friendship with so much so we share a familial bond between each
+      other. But the state has branded them a heretic and now he is an outsider who
+      isn't welcome in this town I call home. This is all too unjust and cruel i miss
+      him and yet im aware i can never ever see him again. I miss him terribly so!
+      Please help me mend my wounds.
+    - Hmmm, what a  lovely little birdie.
+    - I hope this works
   - questions:
     - L3
     - 123123?
@@ -1457,7 +1484,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3446062186063343271}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
   m_Name: 
@@ -1516,7 +1543,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -40, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3446062186315989147
 CanvasRenderer:
@@ -1548,7 +1575,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: b11d118a7d2aa1f488a19c553eee4eaf, type: 3}
     m_FontSize: 50
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 5
     m_MaxSize: 50
     m_Alignment: 4
